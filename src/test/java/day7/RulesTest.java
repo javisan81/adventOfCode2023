@@ -8,22 +8,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RulesTest {
     @Test
     void onePair() {
-        assertTrue(new TwoCardsRepeated(1, 1).accept("32T3K"));
+        assertTrue(new TwoGroupsRepeated(2,1, 1).accept("32T3K"));
     }
 
     @Test
     void twoPair() {
-        assertTrue(new TwoCardsRepeated(2, 1).accept("23432"));
+        assertTrue(new TwoGroupsRepeated(2,2, 1).accept("23432"));
     }
 
     @Test
     void threeOfAKind() {
-        assertTrue(new ThreeCardsRepeated(1, 1).accept("TTT98"));
+        assertTrue(new TwoGroupsRepeated(3, 1, 1).accept("TTT98"));
     }
 
     @Test
     void fullHouse() {
-        assertTrue(new ThreeCardsRepeated(2, 1).accept("23332"));
+        assertTrue(new TwoGroupsRepeated(3, 2, 1).accept("23332"));
     }
 
     @Test
@@ -86,7 +86,7 @@ class RulesTest {
 
     @Test
     void fullHouseWithJs(){
-        assertTrue(new ThreeCardsRepeated(2, 1).accept("99J88"));
+        assertTrue(new TwoGroupsRepeated(3, 2, 1).accept("99J88"));
     }
 
 }

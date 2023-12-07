@@ -2,12 +2,13 @@ package day7;
 
 import static day7.StrengthCalculator.getMaxRepetitions;
 
-public class ThreeCardsRepeated implements StrengthCalculator {
+public class TwoGroupsRepeated implements StrengthCalculator {
     private final int strength;
     private final int othersRepeated;
+    private final int mainGroupRepeated;
 
-    public ThreeCardsRepeated(int othersRepeated, int strength) {
-
+    public TwoGroupsRepeated(int mainGroupRepeated, int othersRepeated, int strength) {
+        this.mainGroupRepeated = mainGroupRepeated;
         this.strength = strength;
         this.othersRepeated = othersRepeated;
     }
@@ -15,7 +16,7 @@ public class ThreeCardsRepeated implements StrengthCalculator {
     @Override
     public boolean accept(String hand) {
         Repetition maxRepetitions = getMaxRepetitions(hand);
-        return maxRepetitions.repetitions() == 3 &&
+        return maxRepetitions.repetitions() == mainGroupRepeated &&
                 getMaxRepetitions(
                         removeCharacter(hand, maxRepetitions.character())
                 ).repetitions() == othersRepeated;

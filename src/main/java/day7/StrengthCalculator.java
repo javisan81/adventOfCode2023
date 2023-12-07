@@ -11,10 +11,10 @@ public interface StrengthCalculator {
         return List.of(
                 new StrengthCalculatorByRepetition(5, 7),
                 new StrengthCalculatorByRepetition(4, 6),
-                new ThreeCardsRepeated(2, 5),
-                new ThreeCardsRepeated(1, 4),
-                new TwoCardsRepeated(2, 3),
-                new TwoCardsRepeated(1, 1),
+                new TwoGroupsRepeated(3, 2, 5),
+                new TwoGroupsRepeated(3, 1, 4),
+                new TwoGroupsRepeated(2, 2, 3),
+                new TwoGroupsRepeated(2, 1, 1),
                 new StrengthCalculatorByRepetition(0, 0)
         );
     }
