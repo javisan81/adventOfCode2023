@@ -1,7 +1,5 @@
 package day6;
 
-import day6.Race;
-import day6.Races;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
