@@ -5,7 +5,15 @@ import java.util.Objects;
 
 public class Hand implements Comparable<Hand> {
     private static String orderOfLabels="AKQT98765432J";
-    private static final List<StrengthCalculator> strengthCalculators = StrengthCalculator.rules();
+    private static final List<TwoGroupsRepeated> strengthCalculators = List.of(
+            new TwoGroupsRepeated(5, 0, 7),
+            new TwoGroupsRepeated(4, 1, 6),
+            new TwoGroupsRepeated(3, 2, 5),
+            new TwoGroupsRepeated(3, 1, 4),
+            new TwoGroupsRepeated(2, 2, 3),
+            new TwoGroupsRepeated(2, 1, 1),
+            new TwoGroupsRepeated(0, 0, 0)
+    );
     private final String hand;
     private final int bid;
 
