@@ -9,13 +9,13 @@ public interface StrengthCalculator {
 
     static List<StrengthCalculator> rules() {
         return List.of(
-                new StrengthCalculatorByRepetition(5, 7),
-                new StrengthCalculatorByRepetition(4, 6),
+                new TwoGroupsRepeated(5, 0,7),
+                new TwoGroupsRepeated(4, 1,6),
                 new TwoGroupsRepeated(3, 2, 5),
                 new TwoGroupsRepeated(3, 1, 4),
                 new TwoGroupsRepeated(2, 2, 3),
                 new TwoGroupsRepeated(2, 1, 1),
-                new StrengthCalculatorByRepetition(0, 0)
+                new TwoGroupsRepeated(0, 0,0)
         );
     }
 

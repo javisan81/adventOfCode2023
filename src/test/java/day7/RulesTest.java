@@ -28,12 +28,12 @@ class RulesTest {
 
     @Test
     void fiveOfAKind() {
-        assertTrue(new StrengthCalculatorByRepetition(5, 1).accept("AAAAA"));
+        assertTrue(new TwoGroupsRepeated(5, 0,1).accept("AAAAA"));
     }
 
     @Test
     void fourOfAKind() {
-        assertTrue(new StrengthCalculatorByRepetition(4, 1).accept("AA8AA"));
+        assertTrue(new TwoGroupsRepeated(4, 1,1).accept("AA8AA"));
     }
 
     @Test
@@ -59,29 +59,29 @@ class RulesTest {
 
     @Test
     void withOneJ() {
-        assertTrue(new StrengthCalculatorByRepetition(3, 1).accept("JK3JT"));
+        assertTrue(new TwoGroupsRepeated(3,1,  1).accept("JK3JT"));
     }
 
     @Test
     void with5Js() {
-        assertTrue(new StrengthCalculatorByRepetition(5, 1).accept("JJJJJ"));
+        assertTrue(new TwoGroupsRepeated(5,0, 1).accept("JJJJJ"));
     }
 
     @Test
     void with3Js() {
-        assertTrue(new StrengthCalculatorByRepetition(5, 1).accept("JJJTT"));
+        assertTrue(new TwoGroupsRepeated(5, 0,1).accept("JJJTT"));
     }
 
     @Test
     void with4Js() {
-        assertTrue(new StrengthCalculatorByRepetition(5, 1).accept("J8JJJ"));
+        assertTrue(new TwoGroupsRepeated(5, 0,1).accept("J8JJJ"));
     }
 
     @Test
     void with2Js(){
-        assertTrue(new StrengthCalculatorByRepetition(3, 1).accept("JJ38T"));
-        assertTrue(new StrengthCalculatorByRepetition(4, 1).accept("99TJJ"));
-        assertTrue(new StrengthCalculatorByRepetition(4, 1).accept("646JJ"));
+        assertTrue(new TwoGroupsRepeated(3, 1, 1).accept("JJ38T"));
+        assertTrue(new TwoGroupsRepeated(4, 1,1).accept("99TJJ"));
+        assertTrue(new TwoGroupsRepeated(4, 1,1).accept("646JJ"));
     }
 
     @Test
