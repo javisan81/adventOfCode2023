@@ -10,15 +10,9 @@ public class Oasis {
         this.history = history;
     }
 
-    public int extrapolateNewValues() {
+    public int extrapolate(Predict predict) {
         return history.stream()
-                .mapToInt(oneLine -> extrapolateElement(extrapolate(oneLine, Predict.NEXT), Integer::sum))
-                .sum();
-    }
-
-    public int extrapolateFirstValues() {
-        return history.stream()
-                .mapToInt(oneLine -> extrapolateElement(extrapolate(oneLine, Predict.PREVIOUS), Oasis::reverseSubtract))
+                .mapToInt(oneLine -> extrapolateElement(extrapolate(oneLine, predict), predict.reducer))
                 .sum();
     }
 
@@ -37,10 +31,6 @@ public class Oasis {
         List<Integer> reversePartialResults = new ArrayList<>(partialResults);
         Collections.reverse(reversePartialResults);
         return reversePartialResults.stream().mapToInt(Integer::intValue).reduce(0, reducer);
-    }
-
-    private static int reverseSubtract(int a, int b) {
-        return b - a;
     }
 
     private static Integer partialResult(List<Integer> oneLine, Predict predict) {

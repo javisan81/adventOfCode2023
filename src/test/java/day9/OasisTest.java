@@ -15,7 +15,8 @@ public class OasisTest {
     @Test
     void noLines() {
         Oasis oasis = new Oasis(new ArrayList<>());
-        assertEquals(0, oasis.extrapolateNewValues());
+
+        assertEquals(0, oasis.extrapolate(Predict.NEXT));
     }
 
     @Test
@@ -25,7 +26,8 @@ public class OasisTest {
                         List.of(0, 3, 6, 9, 12, 15)
                 )
         );
-        assertEquals(18, oasis.extrapolateNewValues());
+
+        assertEquals(18, oasis.extrapolate(Predict.NEXT));
     }
 
     @Test
@@ -36,7 +38,8 @@ public class OasisTest {
                         List.of(1, 3, 6, 10, 15, 21)
                 )
         );
-        assertEquals(46, oasis.extrapolateNewValues());
+
+        assertEquals(46, oasis.extrapolate(Predict.NEXT));
     }
 
     @Test
@@ -46,7 +49,8 @@ public class OasisTest {
                         List.of(0, -3, -6, -9, -12, -15)
                 )
         );
-        assertEquals(-18, oasis.extrapolateNewValues());
+
+        assertEquals(-18, oasis.extrapolate(Predict.NEXT));
     }
 
     @Test
@@ -58,14 +62,16 @@ public class OasisTest {
                         List.of(10, 13, 16, 21, 30, 45)
                 )
         );
-        assertEquals(114, oasis.extrapolateNewValues());
+
+        assertEquals(114, oasis.extrapolate(Predict.NEXT));
     }
 
     @Test
     void firstPart() throws URISyntaxException, IOException {
         List<String> lines = Files.readAllLines(Path.of(ClassLoader.getSystemResource("oasis.txt").toURI()));
         Oasis oasis=new OasisParser().parse(lines);
-        assertEquals(1939607039, oasis.extrapolateNewValues());
+
+        assertEquals(1939607039, oasis.extrapolate(Predict.NEXT));
     }
 
     @Test
@@ -75,7 +81,7 @@ public class OasisTest {
                         List.of(10, 13, 16, 21, 30, 45)
                 )
         );
-        assertEquals(5, oasis.extrapolateFirstValues());
+        assertEquals(5, oasis.extrapolate(Predict.PREVIOUS));
     }
 
     @Test
@@ -87,13 +93,13 @@ public class OasisTest {
                         List.of(10, 13, 16, 21, 30, 45)
                 )
         );
-        assertEquals(2, oasis.extrapolateFirstValues());
+        assertEquals(2, oasis.extrapolate(Predict.PREVIOUS));
     }
 
     @Test
     void secondPart() throws URISyntaxException, IOException {
         List<String> lines = Files.readAllLines(Path.of(ClassLoader.getSystemResource("oasis.txt").toURI()));
         Oasis oasis=new OasisParser().parse(lines);
-        assertEquals(1041, oasis.extrapolateFirstValues());
+        assertEquals(1041, oasis.extrapolate(Predict.PREVIOUS));
     }
 }
