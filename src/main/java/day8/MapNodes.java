@@ -31,7 +31,7 @@ public class MapNodes {
             } else {
                 nodesVisited.add(key);
             }
-            nextInstructionIndex = nextInstructionIndex(instructions, nextInstructionIndex, 1);
+            nextInstructionIndex = nextInstructionIndex(instructions, nextInstructionIndex);
             steps++;
         }
         return steps;
@@ -66,8 +66,8 @@ public class MapNodes {
                 .collect(Collectors.toList());
     }
 
-    private static int nextInstructionIndex(String instructions, int nextInstructionIndex, int stepsDone) {
-        return (nextInstructionIndex + stepsDone) % instructions.length();
+    private static int nextInstructionIndex(String instructions, int nextInstructionIndex) {
+        return (nextInstructionIndex + 1) % instructions.length();
     }
 
     @Override
