@@ -12,11 +12,11 @@ public class Oasis {
 
     public int extrapolate(Predict predict) {
         return history.stream()
-                .mapToInt(oneLine -> extrapolateElement(extrapolate(oneLine, predict), predict.reducer))
+                .mapToInt(oneLine -> extrapolateElement(partialResults(oneLine, predict), predict.reducer))
                 .sum();
     }
 
-    private List<Integer> extrapolate(List<Integer> oneLine, Predict predict) {
+    private List<Integer> partialResults(List<Integer> oneLine, Predict predict) {
         List<Integer> partialResults = new ArrayList<>();
         List<Integer> currentSubtraction = oneLine;
         partialResults.add(partialResult(oneLine, predict));
@@ -75,6 +75,4 @@ public class Oasis {
                 "history=" + history +
                 '}';
     }
-
-
 }
