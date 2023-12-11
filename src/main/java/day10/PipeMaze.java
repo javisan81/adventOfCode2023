@@ -82,24 +82,21 @@ public class PipeMaze {
     public int tilesEnclosedInLoop() {
         Position startingPosition = findStartingPosition();
         List<PositionDirection> loop = findLoop(startingPosition);
-        TileType connectorToReplaceS = getConnectorToReplaceS(loop);
-        int maxRows = map.length;
-        int maxCols = map[0].length;
-        int[][] tilesEnclosedOrNot = new int[maxRows][maxCols];
-        for (int row = 0; row < maxRows; row++) {
-            for (int col = 0; col < maxCols; col++) {
+        int[][] tilesEnclosedOrNot = new int[maxRows()][maxCols()];
+        for (int row = 0; row < maxRows(); row++) {
+            for (int col = 0; col < maxCols(); col++) {
                 tilesEnclosedOrNot[row][col] = 0;
-                Optional<Position> position = Optional.of(new Position(row, col, maxRows, maxCols));
+                Optional<Position> position = Optional.of(new Position(row, col, maxRows(), maxCols()));
                 if (!isGround(position) && isNotPartOfTheLoop(loop, position)) {
                     map[row][col] = GROUND;
                 }
             }
         }
-        map[startingPosition.row()][startingPosition.col()] = connectorToReplaceS;
+        map[startingPosition.row()][startingPosition.col()] = getConnectorToReplaceS(loop);
 
-        for (int row = 0; row < maxRows; row++) {
-            for (int col = 0; col < maxCols; col++) {
-                Position position = new Position(row, col, maxRows, maxCols);
+        for (int row = 0; row < maxRows(); row++) {
+            for (int col = 0; col < maxCols(); col++) {
+                Position position = new Position(row, col, maxRows(), maxCols());
                 TileType tileType = getTile(position);
                 if (tileType == GROUND) {
                     if (numberOfRayIntersectionsWithLoop(position) % 2 == 1) {
@@ -109,9 +106,13 @@ public class PipeMaze {
             }
         }
 
+        return countTilesInside(tilesEnclosedOrNot);
+    }
+
+    private int countTilesInside(int[][] tilesEnclosedOrNot) {
         int result = 0;
-        for (int i = 0; i < maxRows; i++) {
-            for (int j = 0; j < maxCols; j++) {
+        for (int i = 0; i < maxRows(); i++) {
+            for (int j = 0; j < maxCols(); j++) {
                 result = result + tilesEnclosedOrNot[i][j];
             }
         }
